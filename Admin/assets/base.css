@@ -1,0 +1,42 @@
+:root{
+    --white-color: #fff;
+    --black-color: #000;
+    --brand-color: rgb(255, 255, 255);
+    --footer-fontcolor: rgba(248, 248, 248,0.9);
+    --footer-menu_li: rgb(159, 154, 168);
+    --header-color: #f2a936;
+}
+*{
+    box-sizing: border-box;
+}
+html{
+    font-size: 100%;
+    line-height: 16px;
+    font-family: sans-serif;
+    
+}
+body{
+    margin: 0;
+}
+
+.grid{
+    display: grid;
+}
+.grid__full-width{
+    width: 100%;
+}
+.grid__row{
+    display: flex;
+    flex-wrap: wrap;
+}
+img{
+    width: 100%;
+    
+}
+.grid-container{
+    display: grid;
+    grid-gap: 10px; 
+    grid-template-columns: auto auto auto auto;
+    /* grid-row-gap - grid column gap */
+}
+

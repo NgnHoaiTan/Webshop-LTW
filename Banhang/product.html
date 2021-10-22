@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- style -->
+    <link rel="stylesheet" href="./assets/base.css">
+    <link rel="stylesheet" href="./assets/styles.css">
+
+    <!-- font text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- font icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div id="heading-nav">
+            <div class="navbar-top" id="navbar-top">
+                <h1 id="brand-shop">GLAMOROUS</h1>
+                <ul class="navbar-list">
+                    <li class="navbar-list-item">
+                        <a href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="navbar-list-item">
+                        <a href="product.html">Shop</a>
+                    </li>
+                    <li class="navbar-list-item">
+                        <a href="shoppingCart.html">Giỏ hàng</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <h2 id="product-list">L I S T P R O D U C T</h2>
+    <main class="container--product">
+        <div class="sidebar--product">
+            <h3 class="filter--title">Product Filter By</h3>
+            <div class="filter-by-price">
+                <h4>Price</h4>
+                <input type="radio" name="price" id="filterbyprice" class="filter-radio">
+                <label for="price">$100 - $150</label><br>
+                <input type="radio" name="price" id="filterbyprice" class="filter-radio">
+                <label for="price">$150 - $250</label><br>
+                <input type="radio" name="price" id="filterbyprice" class="filter-radio">
+                <label for="price">$250 - $400</label><br>
+                <input type="radio" name="price" id="filterbyprice" class="filter-radio">
+                <label for="price">$400 - $500</label><br>
+            </div>
+            <div class="filter-by-category">
+                <h4>Categories</h4>
+                <input type="radio" name="category" id="filterbycategory" class="filter-radio">
+                <label for="price">Clothes</label><br>
+                <input type="radio" name="category" id="filterbycategory" class="filter-radio">
+                <label for="price">Shoes</label><br>
+                <input type="radio" name="category" id="filterbycategory" class="filter-radio">
+                <label for="price">Accessory</label><br>
+                <input type="radio" name="category" id="filterbycategory" class="filter-radio">
+                <label for="price">Gender</label><br>
+            </div>
+
+        </div>
+        <div class="container--listproduct">
+                <div class="top--listproduct">
+                    <div class="sort-product">
+                        <p>Sort by</p>
+                        <select name="sort" id="sort">
+                            <option value="Trendy">Trendy</option>
+                            <option value="Price">Price</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="products--list grid-product">
+                    <div class="product--info">
+                        <div class="img-product-review">
+                            <img src="./image/product/sp3.jpg" alt="">
+                                
+                                <button class="btn_buy-product">Mua hàng</button>
+                                <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button> 
+                        </div>
+                        
+                        <p class="name-product">Shirt in Stretch Cotton</p>
+                        <p>300$</p>
+                    </div>
+
+                    <div class="product--info">
+                        <div class="img-product-review">
+                            <img src="./image/product/sp4.jpg" alt="">
+                            <button class="btn_buy-product">Mua hàng</button>
+                            <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button>
+                        </div>
+                        
+                        <p class="name-product">Front Pocket Jumper</p>
+                        <p>309$</p>
+                    </div>
+                    <div class="product--info">
+                        <div class="img-product-review">
+                            <img src="./image/product/sp5.jpg" alt="" >
+                            <button class="btn_buy-product">Mua hàng</button>
+                            <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button>
+                        </div>
+                        
+                        <p class="name-product">intage Inspired Classic</p>
+                        <p>278$</p>
+                    </div>
+                    <div class="product--info">
+                        <div class="img-product-review">
+                            <img src="./image/product/sp6.jpg" alt="">
+                            <button class="btn_buy-product">Mua hàng</button>
+                            <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button>
+                        </div>
+                        
+                        <p class="name-product">jacket suit new feminity concept</p>
+                        <p>380$</p>
+                    </div>
+                    <div class="product--info">
+                        <div class="img-product-review">
+                            <img src="./image/product/sp7.jpg" alt="">
+                            <button class="btn_buy-product">Mua hàng</button>
+                            <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button>
+                        </div>
+                        
+                        <p class="name-product">T-Shirt with Sleeve</p>
+                        <p>190$</p>
+                    </div>
+                    
+                   
+                </div>
+                <div class="row">
+                    <div class="nextpage-product">
+                        <button class="btn btn-nextpage">1</button>
+                        <button class="btn btn-nextpage">2</button>
+                        <button class="btn btn-nextpage">3</button>
+                        <button class="btn btn-nextpage">4</button>
+                    </div>
+                </div>
+                
+            
+        </div>
+        
+    </main>
+</body>
+</html>

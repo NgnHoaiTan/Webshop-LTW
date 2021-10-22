@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebShop</title>
+    <!-- FONTICON -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/base.css">
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+    <header>
+        <div class="hero-image">
+            <div class="navbar-top" id="navbar-top">
+                <h1 id="brand-shop">GLAMOROUS</h1>
+                <ul class="navbar-list">
+                    <li class="navbar-list-item">
+                        <a href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="navbar-list-item">
+                        <a href="product.html">Shop</a>
+                    </li>
+                    <li class="navbar-list-item">
+                        <a href="shoppingCart.html">Giỏ hàng</a>
+                    </li>
+                </ul>
+            </div>
+            <img src="./image/pexels-artem-beliaikin-9945171.jpg" alt="">
+        </div>
+    </header>
+    <div id="main">
+       
+        <div class="container body-main-padding">
+            
+            <div class="womens-fashion row" id="women-fashion">
+                <div class="image-wrapper">
+                    <img src="./image/women-fashion.jpg" alt="">
+                </div>
+                <div class="blog-wrapper">
+                    
+                </div>
+                
+
+            </div>
+            <div class="sale-products">
+
+            </div>
+            <div class="men-fashion row" id="men-fashion">
+                
+                <div class="image-wrapper image-wrapper-men">
+                    <img src="./image/man-fashion.jpg" alt="">
+                </div>
+                
+            </div>
+            
+            <div class="voucher">
+
+            </div>
+        </div>
+       
+        
+    </div>
+    <footer class="footer">
+        <div class="footer--top row row-justify-around">
+            <div class="footer--top__content">
+                <h4>CATAGORIES</h4>
+                <ul class="footer--menu">
+                    <li>Nam</li>
+                    <li>Nữ</li>
+                    <li>Phụ kiện</li>
+                    <li>Giày</li>
+                </ul>
+            </div>
+            <div class="footer--top__content">
+                <h4>INFORMATION</h4>
+                <ul class="footer--menu">
+                    <li>About us</li>
+                    
+                </ul>
+            </div>
+            <div class="footer--top__content">
+                <h4>LEGAL</h4>
+                <ul class="footer--menu">
+                    <li>Terms & conditions</li>
+                    <li>License Agreement</li>
+                    <li>Privacy policy</li>
+                    
+                </ul>
+                <h4>HELP</h4>
+                <ul class="footer--menu">
+                    <li>Support</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+            <div class="footer--top__content">
+                <h4>LEGAL</h4>
+                <ul class="footer--menu">
+                    <li>Nam</li>
+                    <li>Nữ</li>
+                    <li>Phụ kiện</li>
+                    <li>Giày</li>
+                </ul>
+                <h4>HELP</h4>
+                <ul class="footer--menu">
+                    <li>Nam</li>
+                    <li>Nữ</li>
+                    <li>Phụ kiện</li>
+                    <li>Giày</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+        
+
+
+    </script>
+    <script>
+        const navbar = document.getElementById('navbar-top')
+        let lastScroll = 0;
+        window.addEventListener('scroll',function(){
+            const currentScroll = window.pageYOffset;
+            if(currentScroll <=0){
+
+            }
+            if(currentScroll > lastScroll && !navbar.classList.contains('scroll-down')){
+                navbar.classList.remove('scroll-up');
+                navbar.classList.add('scroll-down');
+            }
+            if(currentScroll < lastScroll && !navbar.classList.contains('scroll-up')){
+                navbar.classList.remove('scroll-down');
+                navbar.classList.add('scroll-up');
+            }
+            lastScroll = currentScroll;
+        })
+    </script>
+    <script>
+        const menfashion = document.getElementById('men-fashion');
+        const womenfashion = document.getElementById('women-fashion');
+        window.addEventListener('scroll',function(){
+            const currentScroll = window.pageYOffset;
+            const menfashionY = menfashion.offsetTop;
+            const womenfashionY = womenfashion.offsetTop;
+
+            const menfashionheight = menfashion.offsetHeight;
+            const womenfashionheight = womenfashion.offsetHeight;
+            
+            const positionMen = menfashionY - menfashionheight;
+            const positionWomen = womenfashionY  - womenfashionheight;
+            if(currentScroll >= positionMen - 150){
+                menfashion.classList.add('appear-scroll');
+            }
+            
+            if(currentScroll >= positionWomen - 80){
+                console.log(positionWomen)
+                womenfashion.classList.remove('hide');
+                womenfashion.classList.add('appear-scroll');
+            }
+            else{
+                womenfashion.classList.add('hide');
+            }
+        })
+    </script>
+</body>
+</html>
