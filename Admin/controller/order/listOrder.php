@@ -59,12 +59,15 @@
                     <li class="navbar--items">
                         <a href="../customer/listCustomer.php"class="nav-items-link"><i class='bx bx-group'></i>Khách hàng</a>
                     </li>
+                    <?php if(!empty($_SESSION['admin']) && isset($_SESSION['admin'])) {?>
                     <li class="navbar--items">
-                        <a href="../../logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout temp</a>
+                        <a href="../../logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout</a>
                     </li>
+                    <?php }else { ?>
                     <li class="navbar--items">
-                        <a href="../../login.php"class="nav-items-link"><i class='bx bx-group'></i>Login temp</a>
+                        <a href="../../login.php"class="nav-items-link"><i class='bx bx-group'></i>Login</a>
                     </li>
+                    <?php } ?>
                     
                 </ul>
             </div>
@@ -93,7 +96,7 @@
         <div class="main-wrapper">
             <h2>Danh sách đơn hàng</h2>
             <div class="main--wrapper__product" >
-                <table cellspacing=0 class="table--listproduct" id="list-fetch-order">
+                <table cellspacing="0" class="table--listorder" id="list-fetch-order">
                     <tr class="table-row table-top-header">
                         <th>Mã Đơn</th>
                         <th>MSHH</th>
@@ -122,7 +125,24 @@
                 
             });
             
-                      
+            $(document).on('click','.approvebtn',function(){
+                var id_order = $(this).attr('id');
+                var staff = $(this).attr('staff');
+                console.log(staff);
+                $.ajax({
+                    url:'fetch_order.php',
+                    type:"post",
+                    data:{
+                        'id-order':id_order,
+                        'btnApprove':'approve',
+                        'staff':staff,
+                    },
+                    success:function(fetch_result){
+                        $('#list-fetch-order').html(fetch_result);
+                        console.log(fetch_result);
+                    },
+                })
+            })          
         })
     </script>
 </body>

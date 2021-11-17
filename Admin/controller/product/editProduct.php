@@ -71,12 +71,15 @@
                     <li class="navbar--items">
                         <a href="../customer/listCustomer.php"class="nav-items-link"><i class='bx bx-group'></i>Khách hàng</a>
                     </li>
+                    <?php if(!empty($_SESSION['admin']) && isset($_SESSION['admin'])) {?>
                     <li class="navbar--items">
                         <a href="../../logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout</a>
                     </li>
+                    <?php }else { ?>
                     <li class="navbar--items">
                         <a href="../../login.php"class="nav-items-link"><i class='bx bx-group'></i>Login</a>
                     </li>
+                    <?php } ?>
                 </ul>
             </div>
     </div>
@@ -143,10 +146,10 @@
                 <div class="row-spacing ">
                     <label for="">Ảnh đại diện sản phẩm</label>
                     <div class="main-img-product ">
-                        <?php foreach($Main_Images as $img){ ?>
+                        <?php foreach($Main_Images as $mimg){ ?>
                             <div class="show-main-img">
-                                <img src="../../image/upload/<?php echo $img['TenHinh'] ?>" Mahinh="<?php echo $img['MaHinh'] ?>" class="img-product-review">
-                                <button class="btn-deleteimg" name="deleteimg">Xóa</button>
+                                <img src="../../image/upload/<?php echo $mimg['TenHinh'] ?>" Mahinh="<?php echo $mimg['MaHinh'] ?>" class="img-product-review">
+                                <button class="btn-deleteimg" name="deleteimg" trigger="Xóa" id-image="<?php echo $mimg['MaHinh'] ?>" id-product="<?php echo $product['MSHH'] ?>">Xóa</button>
                             </div>
                             
                         <?php } ?>
@@ -160,7 +163,7 @@
                         <?php foreach($Images as $img){ ?>
                             <div class="show-img">
                                 <img src="../../image/upload/<?php echo $img['TenHinh'] ?>" Mahinh="<?php echo $img['MaHinh'] ?>" class="img-product-review">
-                                <button class="btn-deleteimg" name="deleteimg" trigger="Xóa">Xóa</button>
+                                <button class="btn-deleteimg" name="deleteimg" trigger="Xóa" id-image="<?php echo $img['MaHinh'] ?>" id-product="<?php echo $product['MSHH'] ?>">Xóa</button>
                 
                             </div>
                             
@@ -235,20 +238,12 @@
                             'mergeTableCells'
                         ]
                     },
-                        licenseKey: '',
-                        
-                        
-                        
+                        licenseKey: '',    
                     } )
                     .then( editor => {
-                        window.editor = editor;
-                
-                        
-                        
-                        
+                        window.editor = editor;    
                     }
-                    )
-                    
+                    )                   
                     .catch( error => {
                         console.error( error );
                 } );
@@ -259,10 +254,6 @@
                 $(document).on('click','.submit-edit-product',function(e){
                     e.preventDefault();
                     var formData = new FormData($('#form-edit-product')[0])
-                    // for(var pair of formData.entries()) {
-                    //     console.log(pair[0]+ ', '+ pair[1]); 
-                    //     }
-
                     $.ajax({
                         url:"./ajaxHandle/ajax_edit.php",
                         type:"POST",                       
@@ -277,14 +268,18 @@
                 })
                 $(document).on('click','.btn-deleteimg',function(e){
                     e.preventDefault();
-                    var mahinh = $('.img-product-review').attr('Mahinh');
-                    console.log('delete image:'.$('#idproduct').val());
+                    var id_image = $(this).attr('id-image');
+                    var id_product = $(this).attr('id-product');
+                    var deletebtn = $(this).attr('trigger');
+                    console.log('delete image '+id_image);
+                    console.log(deletebtn);
                     $.ajax({
                         url:'./ajaxHandle/ajax_edit.php',
                         type:'post',
                         data:{
-                            'mahinh':mahinh,
-                            'idproduct':$('#idproduct').val(),
+                            'id_image':id_image,
+                            'triggerDel':deletebtn,
+                            'id_product--delimg':id_product,
                         },
                         success:function(result){
                             $('#result-edit-product').html(result);

@@ -57,12 +57,15 @@
                     <li class="navbar--items">
                         <a href="./controller/customer/listCustomer.php"class="nav-items-link"><i class='bx bx-group'></i>Khách hàng</a>
                     </li>
+                    <?php if(!empty($_SESSION['admin']) && isset($_SESSION['admin'])) {?>
                     <li class="navbar--items">
-                        <a href="logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout temp</a>
+                        <a href="logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout</a>
                     </li>
+                    <?php }else { ?>
                     <li class="navbar--items">
-                        <a href="login.php"class="nav-items-link"><i class='bx bx-group'></i>Login temp</a>
+                        <a href="login.php"class="nav-items-link"><i class='bx bx-group'></i>Login</a>
                     </li>
+                    <?php } ?>
                     
                 </ul>
             </div>

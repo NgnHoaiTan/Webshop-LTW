@@ -5,7 +5,7 @@ $allowedFileType = array('jpg','png','jpeg');
 $categories = getAllCategories();
 $Main_Images;
 $Images;
-$result_return;
+$result_update=0;
     $id_product = isset($_POST['idproduct']) ? $_POST['idproduct'] : "";
     $name_product = isset($_POST['nameproduct']) ? $_POST['nameproduct'] : "";
     $category = isset($_POST['category']) ? $_POST['category'] : '';
@@ -17,7 +17,7 @@ $result_return;
     if(!empty($id_product)||!empty($name_product)||!empty($category)||!empty($price)||!empty($quantity)||!empty($$description)){
         
         //update san pham
-        $result_return = updateProduct($id_product,$name_product,$description,$price,$quantity,$category);
+        updateProduct($id_product,$name_product,$description,$price,$quantity,$category);
         
         //update image
         if(!empty($_FILES['updatefileimg']['name'])){
@@ -31,7 +31,7 @@ $result_return;
                     
                     if(!file_exists($fileTargetPath)){
                         move_uploaded_file($templocation,$fileTargetPath);
-                        $id_image = uniqid('MImG-',false);
+                        $id_image = uniqid('ImG-',false);
                         insertImageProduct($id_image,$filename,$id_product);
                     }
                     else{                        
@@ -40,29 +40,66 @@ $result_return;
                         $fileTargetPath = $uploadsDir.$newfilename;
                         move_uploaded_file($templocation,$fileTargetPath);
                     
-                        $id_image = uniqid('MImG-',false);
+                        $id_image = uniqid('ImG-',false);
                         insertImageProduct($id_image,$newfilename,$id_product);
                     }    
                 }
             }
         }
+        if(!empty($_FILES['updatefileavt']['name'])){
+                $filename = $_FILES['updatefileavt']['name']; // luu ten file
+                $templocation = $_FILES['updatefileavt']['tmp_name']; //luu ten file tam thoi, tai C:\xampp\tmp\
+                
+                $ext = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
+                $filename = str_replace('/','0',$filename);
+                $fileTargetPath = $uploadsDir.$filename;
+                
+                if(in_array($ext, $allowedFileType)){
+                    
+                    if(!file_exists($fileTargetPath)){
+                        
+                        move_uploaded_file($templocation,$fileTargetPath);
+                        $id_image = uniqid('MImG-',false);
+                        insertImageProduct($id_image,$filename,$id_product);
+                    }
+                    else{
+                        $filename = str_replace('.','-',basename($filename,$ext));
+                        $newfilename = $filename.time().".".$ext;
+                        $fileTargetPath = $uploadsDir.$newfilename;
+                        move_uploaded_file($templocation,$fileTargetPath);
+                       
+                        $id_image = uniqid('MImG-',false);
+                        insertImageProduct($id_image,$newfilename,$id_product);
+                    }
+                    
+                    
+                }
+                else{
+                    $returnvalue = 0;
+                }
+            //}
+            
+        }
 
-
+        $result_update=1;
 
 }
 //xoa img
-    if(!empty($_POST['mahinh'])){
-        $mahinh = $_POST['mahinh'];
-        deleteImageByIdImg($mahinh);
+    $result_del_image=0;
+    if(!empty($_POST['triggerDel'])){
+        $id_image = $_POST['id_image'];
+        $result_del_image = deleteImageByIdImg($id_image);
+        $id_product = $_POST['id_product--delimg'];
     }
 
     $Images = getAnotherImage($id_product);
     $Main_Images = getImageMain($id_product);
     $product = getProductById($id_product)
 ?>
-        <h2><?php $result_return  ?></h2>
- 
-    <form action="editProduct.php" method="POST" class="form--addproduct" id="form-edit-product" enctype="multipart/form-data">
+    
+            <?php if($result_del_image){ ?>
+                <p><?php echo $result_update ?></p>
+            <form action="editProduct.php" method="POST" class="form--addproduct" id="form-edit-product" enctype="multipart/form-data">
                 <h2>Cập nhật sản phẩm</h2>
                 
                 <div class="row-spacing">
@@ -102,13 +139,14 @@ $result_return;
                 <div class="row-spacing ">
                     <label for="">Ảnh đại diện sản phẩm</label>
                     <div class="main-img-product ">
+                        <?php if(!empty($Main_Images)){?>
                         <?php foreach($Main_Images as $mimg){ ?>
                             <div class="show-main-img">
                                 <img src="../../image/upload/<?php echo $mimg['TenHinh'] ?>" alt="<?php echo $mimg['MaHinh'] ?>" class="img-product-review">
-                                <button class="btn-deleteimg" name="deleteimg">Xóa</button>
+                                <button class="btn-deleteimg" name="deleteimg" trigger="Xóa" id-image="<?php echo $mimg['MaHinh'] ?>" id-product="<?php echo $product['MSHH'] ?>">Xóa</button>
                             </div>
                             
-                        <?php } ?>
+                        <?php }} ?>
                     </div>
                 </div>
                 <div class="row-spacing img-product-bgcolor">
@@ -117,7 +155,7 @@ $result_return;
                         <?php foreach($Images as $img){ ?>
                             <div class="show-img">
                                 <img src="../../image/upload/<?php echo $img['TenHinh'] ?>" alt="<?php echo $img['MaHinh'] ?>" class="img-product-review">
-                                <button class="btn-deleteimg" name="deleteimg">Xóa</button>
+                                <button class="btn-deleteimg" name="deleteimg" trigger="Xóa"  id-image="<?php echo $img['MaHinh'] ?>" id-product="<?php echo $product['MSHH'] ?>">Xóa</button>
                             </div>
                            
                             
@@ -137,6 +175,26 @@ $result_return;
                 <button class="goback-btn" onclick="goBack()">Trở về</button>
                 <input type="submit" class="submit-edit-product" value="Lưu">   
             </form>
+            <?php  } ?>
+
+            <?php if($result_update) { ?>
+                <div class="wrapper-img-result">
+                    <img src="../../image/background/update_sucess.jpg" alt="">
+                    <div class="text-result">
+                        <p>Bạn đã cập nhật thành công</p>
+                        <div class="redirect-after-result">
+                            <button><a href="../product/listProduct.php">Xem danh sách sản phẩm</a></button>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            <?php } ?>
+            
+           
+
+
             <script>
                 ClassicEditor
                     .create( document.querySelector( '#description' )

@@ -99,7 +99,7 @@
                         <a href="../product/listProduct.php" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
                     </li>
                     <li class="navbar--items">
-                        <a href=""class="nav-items-link"><i class='bx bx-shopping-bag'></i>Quản lí đơn đặt hàng</a>
+                        <a href="../order/listOrder.php"class="nav-items-link"><i class='bx bx-shopping-bag'></i>Quản lí đơn đặt hàng</a>
                     </li>
                     <li class="navbar--items">
                         <a href="../category/category.php"class="nav-items-link"><i class="fas fa-tasks"></i>Danh mục thể loại</a>
@@ -107,12 +107,15 @@
                     <li class="navbar--items">
                         <a href="../customer/listCustomer.php"class="nav-items-link"><i class='bx bx-group'></i>Khách hàng</a>
                     </li>
+                    <?php if(!empty($_SESSION['admin']) && isset($_SESSION['admin'])) {?>
                     <li class="navbar--items">
-                        <a href="../../logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout temp</a>
+                        <a href="../../logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout</a>
                     </li>
+                    <?php }else { ?>
                     <li class="navbar--items">
-                        <a href="../../login.php"class="nav-items-link"><i class='bx bx-group'></i>Login temp</a>
+                        <a href="../../login.php"class="nav-items-link"><i class='bx bx-group'></i>Login</a>
                     </li>
+                    <?php } ?>
                     
                 </ul>
             </div>

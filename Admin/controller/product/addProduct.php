@@ -1,7 +1,12 @@
 <?php
 include '../connectDb.php';
+session_start();
 $categories = getAllCategories();
-        
+if(isset($_SESSION['admin'])){
+    $adminname = $_SESSION['admin'];
+    $admininfo = getFullInfoAdmin($adminname);
+    
+}      
     
 ?>
 <!DOCTYPE html>
@@ -37,20 +42,23 @@ $categories = getAllCategories();
                         <a href="../product/listProduct.php" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
                     </li>
                     <li class="navbar--items">
-                        <a href=""class="nav-items-link"><i class='bx bx-shopping-bag'></i>Quản lí đơn đặt hàng</a>
+                        <a href="../order/listOrder.php"class="nav-items-link"><i class='bx bx-shopping-bag'></i>Quản lí đơn đặt hàng</a>
                     </li>
                     <li class="navbar--items">
                         <a href="../category/category.php"class="nav-items-link"><i class="fas fa-tasks"></i>Danh mục thể loại</a>
                     </li>
                     <li class="navbar--items">
-                        <a href=""class="nav-items-link"><i class='bx bx-group'></i>Khách hàng</a>
+                        <a href="../customer/listCustomer.php"class="nav-items-link"><i class='bx bx-group'></i>Khách hàng</a>
                     </li>
+                    <?php if(!empty($_SESSION['admin']) && isset($_SESSION['admin'])) {?>
                     <li class="navbar--items">
-                        <a href=""class="nav-items-link"><i class='bx bx-group'></i>Demo</a>
+                        <a href="../../logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout</a>
                     </li>
+                    <?php }else { ?>
                     <li class="navbar--items">
-                        <a href=""class="nav-items-link"><i class='bx bx-group'></i>Demo</a>
+                        <a href="../../login.php"class="nav-items-link"><i class='bx bx-group'></i>Login</a>
                     </li>
+                    <?php } ?>
                 </ul>
             </div>
     </div>
@@ -205,21 +213,10 @@ $categories = getAllCategories();
             var quantity=$('#quantity').val();
             var description=$("#description").val();
             var form_data = new FormData($('#form-add-product')[0]);
-            // for(var pair of form_data.entries()) {
-            //     console.log(pair[0]+ ', '+ pair[1]); 
-            //     }
+           
             $.ajax({
                 url:'./ajaxHandle/ajax_add.php',
                 type:"post",
-                // data:{
-                //     'submit':submit,
-                //     'id_product':id_product,
-                //     'name_product':name_product,
-                //     'category':category,
-                //     'price':price,
-                //     'quantity':quantity,
-                //     'description':description
-                // },
                 data: form_data,
                 contentType:false,
                 processData:false,

@@ -59,16 +59,19 @@
                     <li class="navbar--items">
                         <a href=""class="nav-items-link"><i class='bx bx-group'></i>Khách hàng</a>
                     </li>
+                    <?php if(!empty($_SESSION['admin']) && isset($_SESSION['admin'])) {?>
                     <li class="navbar--items">
-                        <a href="../../logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout temp</a>
+                        <a href="../../logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout</a>
                     </li>
+                    <?php }else { ?>
                     <li class="navbar--items">
-                        <a href="../../login.php"class="nav-items-link"><i class='bx bx-group'></i>Login temp</a>
+                        <a href="../../login.php"class="nav-items-link"><i class='bx bx-group'></i>Login</a>
                     </li>
+                    <?php } ?>
                     
                 </ul>
             </div>
-    </div>
+        </div>
     
     <div class="wrapper">
         <div class="top--wrapper">
@@ -91,8 +94,8 @@
         </div>
         <div class="main-wrapper">
             <h2>Danh sách khách hàng</h2>
-            <div class="main--wrapper__product" >
-                <table border="1" cellspacing=0 class="table--listproduct" id="list-fetch-customer">
+            <div class="main--wrapper__product wrapper-listcustomer" >
+                <table cellspacing=1 class="table--listcustomer" id="list-fetch-customer">
                     <tr class="table-row table-top-header">
                         <th>Mã khách hàng</th>
                         <th>Username</th>

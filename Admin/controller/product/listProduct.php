@@ -59,12 +59,15 @@
                     <li class="navbar--items">
                         <a href="../customer/listCustomer.php"class="nav-items-link"><i class='bx bx-group'></i>Khách hàng</a>
                     </li>
+                    <?php if(!empty($_SESSION['admin']) && isset($_SESSION['admin'])) {?>
                     <li class="navbar--items">
                         <a href="../../logout.php"class="nav-items-link"><i class='bx bx-group'></i>Logout</a>
                     </li>
+                    <?php }else { ?>
                     <li class="navbar--items">
                         <a href="../../login.php"class="nav-items-link"><i class='bx bx-group'></i>Login</a>
                     </li>
+                    <?php } ?>
                     
                 </ul>
             </div>
@@ -94,7 +97,7 @@
             <!-- <button class="btn btn__add"><a href="addProduct.php">Thêm sản phẩm</a></button> -->
             <button class="btn btn__add"><a href="addProduct.php">Thêm sản phẩm</a></button>
             <div class="main--wrapper__product" >
-                <table border="1" cellspacing=0 class="table--listproduct" id="list-fetch-product">
+                <table  cellspacing="2" class="table--listproduct" id="list-fetch-product">
                 </table>
             </div>
         </div>

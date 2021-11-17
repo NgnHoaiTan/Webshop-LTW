@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS HangHoa(
     MSHH varchar(50) PRIMARY KEY,
     TenHH VARCHAR(255) NOT NULL,
     QuyCach text NOT NULL,
-    Gia DECIMAL(10,4) not null check(Gia>=1),
+    Gia DECIMAL(10,0) not null check(Gia>=1),
     SoLuongHang INT not null check(SoLuongHang>=0),
     MaLoaiHang varchar(10) not null,
     FOREIGN KEY(maloaihang) REFERENCES LoaiHangHoa(MaLoaiHang)
@@ -81,17 +81,17 @@ CREATE TABLE IF NOT EXISTS HinhAnhFeedBack(
 CREATE TABLE IF NOT EXISTS DatHang(
     SoDonDH varchar(50) PRIMARY KEY,
     MSKH varchar(50) not null REFERENCES KhachHang(MSKH),
-    MSNV varchar(50) not null REFERENCES NhanVien(MSNV),
+    MSNV varchar(50) null REFERENCES NhanVien(MSNV),
     NgayDH date default CURRENT_DATE() not null,
-    NgayGH Date default CURRENT_DATE() not null CHECK(NgayGH>NgayDH)
-    
+    NgayGH Date default CURRENT_DATE() not null CHECK(NgayGH>NgayDH),
+    TrangThaiDH boolean not null
 )ENGINE=INNODB;
 CREATE TABLE IF NOT EXISTS ChiTietDatHang(
     SoDonDH varchar(50) REFERENCES DatHang(SoDonDH),
     MSHH varchar(50) REFERENCES HangHoa(MSHH),
     SoLuong INT not null,
-    GiaDatHang DECIMAL(10,4) not null,
-    GiamGia int not null,
+    GiaDatHang DECIMAL(10,0) not null,
+    GiamGia int  null,
     PRIMARY KEY(SoDonDH,MSHH)
     
 )ENGINE=INNODB;
@@ -103,13 +103,21 @@ CREATE TABLE IF NOT EXISTS GioHang(
 )ENGINE=INNODB;
 
 alter table nhanvien
-add COLUMN TKhoan varchar(16) REFERENCES accountnv(TKhoan)
+add COLUMN TKhoan varchar(16) REFERENCES accountnv(TKhoan);
 
-ALTER TABLE dathang
-add COLUMN TrangThaiDH boolean not null
+alter table chitietdathang
+add COLUMN SoDienThoai int(11) not null;
+alter TABLE chitietdathang
+add MaDC varchar(50) not null REFERENCES diachikh(MaDC);
 
-INSERT into accountnv VALUES('admin','admin')
-insert INTO nhanvien values('NV001','Nguyễn Hoài Tân','Administrator','Can Tho','0379586235','admin')
+alter table khachhang
+add COLUMN TenCongTy varchar(100) null;
+
+alter table khachhang
+add COLUMN Avatar varchar(255) null;
+
+INSERT into accountnv VALUES('admin','admin');
+insert INTO nhanvien values('NV001','Nguyễn Hoài Tân','Administrator','Can Tho','0379586235','admin');
 
 
 -- insert into khachhang

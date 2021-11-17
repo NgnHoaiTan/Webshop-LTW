@@ -17,21 +17,20 @@
 
                 
                     <tr class="table-row table-top-header">
-                        <th></th>
+                        
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
                         <th>Thể loại</th>
-                        <!-- <th>Hãng sản xuất</th> -->
                         <th>Giá</th>
-                        <!-- <th>Giảm giá</th> -->
                         <th>Số lượng</th>
                         <th>Tùy chọn</th>    
                     </tr>
+                    <?php if(!empty($products)){ ?>
                     <?php  foreach($products as $item) { ?>
-                    <tr class="table-row">
-                        <td><input type="checkbox" name="checkproduct"></td>
+                    <tr class="table-row table-row-product">
+                        
                         <td><?php echo $item['MSHH'] ?></td>
-                        <td><?php echo $item['TenHH'] ?></td>
+                        <td class="name-product-row"><?php echo $item['TenHH'] ?></td>
                         <td><?php 
                             $name_category_arr = getNameCategoryById($item['MaLoaiHang']);
                                 foreach($name_category_arr as $name_category){
@@ -41,7 +40,7 @@
                         <!-- <td><?php //echo $item['MSHH'] ?></td> -->
                         <td><?php echo $item['Gia'] ?></td>
                         <td><?php echo $item['SoLuongHang'] ?></td>
-                        <td class="row justify-around" >
+                        <td class="row justify-around option-list-product" >
                             <form action="editProduct.php" method="GET">
                                 <input type="hidden" name="id_product" value="<?php echo $item['MSHH'] ?>">
                                 <input type="submit" class="btn btn__edit edit-product" name="edit_product"  value="Sửa"/>
@@ -53,5 +52,16 @@
                             </script>
                         </td>
                     </tr>
-                    <?php  } ?>
+                    <?php  }}else if(empty($products)){ ?>
+                        <tr class="table-row">
+                            <td colspan="7" rowspan="10" class="table-data-empty">
+                                <div id="img-notfound-data">
+                                    <h3>Hiện bạn chưa có sản phẩm nào</h3>
+                                    <img src="../../image/background/findimg.jpg" alt="">
+                                </div>
+                            </td> 
+                        </tr>
+                        
+
+                    <?php } ?>
                 

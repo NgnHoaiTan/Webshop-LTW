@@ -1,5 +1,7 @@
 <?php
     global $conn;
+    header("Content-type: text/html; charset=utf-8");
+    
     function connect_db(){
         $localhost='localhost';
         $username='root';
@@ -344,6 +346,20 @@
         }
         return $result;
     }
+    function ApproveOrder($id_order,$state, $staff)
+    {
+        global $conn;
+        connect_db();
+        $sql = "UPDATE dathang SET
+        TrangThaiDH = $state,
+        MSNV= '$staff'
+        WHERE SoDonDH = '$id_order'
+        ";
+        $query = mysqli_query($conn, $sql);
+        return $query;
+    }
+
+
 
     // ----------------- Khách hàng --------------------
     function getAllCustomer(){
@@ -356,6 +372,44 @@
            while($row = mysqli_fetch_assoc($data))
             $result[] = $row;
         }
+        return $result;
+    }
+    function getAddressByCustomer($id_customer){
+        global $conn;
+        connect_db();
+        $sql = "SELECT * FROM diachikh WHERE MSKH='$id_customer'";
+        $data = mysqli_query($conn, $sql);
+        $result = array();
+        if($data && mysqli_num_rows($data)>0){
+           while($row = mysqli_fetch_assoc($data))
+            $result[] = $row;
+        }
+        return $result;
+    }
+    function getCustomerById($id_customer){
+        global $conn;
+        connect_db();
+        $sql = "SELECT * FROM khachhang WHERE MSKH='$id_customer'";
+        $data = mysqli_query($conn, $sql);
+        $result = array();
+        if($data && mysqli_num_rows($data)>0){
+            $row = mysqli_fetch_assoc($data);
+            $result = $row;
+        }
+        return $result;
+    }
+    function getAddressByUser($MSKH)
+    {
+        global $conn;
+        connect_db();
+        $sql = "SELECT * FROM diachikh WHERE MSKH='$MSKH'";
+        $data = mysqli_query($conn,$sql);
+        $result = array();
+        if($data && mysqli_num_rows($data)>0){
+            while($row = mysqli_fetch_assoc($data))
+            $result[] = $row;
+        }
+        
         return $result;
     }
 ?>

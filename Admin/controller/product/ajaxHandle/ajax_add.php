@@ -51,50 +51,60 @@
                  }
              //}
          }
-        //  // các ảnh liên quan khác
-        //  if(!empty($_FILES['fileImgProduct']['name']))
-        //  {
-        //      foreach($_FILES['fileImgProduct']['name'] as $key => $value){
-        //          $filename = $_FILES['fileImgProduct']['name'][$key]; // luu ten file
-        //          $templocation = $_FILES['fileImgProduct']['tmp_name'][$key]; //luu ten file tam thoi, tai C:\xampp\tmp\
-        //          $ext = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
-        //          $fileTargetPath = $uploadsDir.$filename;
-        //          $finalfilename='';
+         // các ảnh liên quan khác
+         if(!empty($_FILES['fileImgProduct']['name']))
+         {
+             foreach($_FILES['fileImgProduct']['name'] as $key => $value){
+                 $filename = $_FILES['fileImgProduct']['name'][$key]; // luu ten file
+                 $templocation = $_FILES['fileImgProduct']['tmp_name'][$key]; //luu ten file tam thoi, tai C:\xampp\tmp\
+                 $ext = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
+                 $fileTargetPath = $uploadsDir.$filename;
+                 $finalfilename='';
                  
-        //          if(in_array($ext, $allowedFileType)){
+                 if(in_array($ext, $allowedFileType)){
                      
-        //              if(!file_exists($fileTargetPath)){
+                     if(!file_exists($fileTargetPath)){
                          
-        //                  move_uploaded_file($templocation,$fileTargetPath);
-        //                  $finalfilename = $fileTargetPath;
-        //              }
-        //              else{
+                         move_uploaded_file($templocation,$fileTargetPath);
+                         $finalfilename = $fileTargetPath;
+                     }
+                     else{
                          
-        //                  $filename = str_replace('.','-',basename($filename,$ext));
-        //                  $newfilename = $filename.time().".".$ext;
-        //                  $fileTargetPath = $uploadsDir.$newfilename;
-        //                  move_uploaded_file($templocation,$fileTargetPath);
-        //                  $finalfilename = $fileTargetPath;
-        //              }
-        //              $id_image = uniqid('ImG-',false);
-        //              insertImageProduct($id_image,$finalfilename,$data['idproduct']);
+                         $filename = str_replace('.','-',basename($filename,$ext));
+                         $newfilename = $filename.time().".".$ext;
+                         $fileTargetPath = $uploadsDir.$newfilename;
+                         move_uploaded_file($templocation,$fileTargetPath);
+                         $filename =  $newfilename;
+                     }
+                     $id_image = uniqid('ImG-',false);
+                     insertImageProduct($id_image,$filename,$id_product);
                      
-        //          }
-        //          else{
-        //              $response = array(
-        //                  "status" => "alert-danger",
-        //                  "message" => "Only .jpg, .jpeg and .png file formats allowed."
-        //              );
-        //          }
-        //      }
-        //  }
+                 }
+                 else{
+                     $response = array(
+                         "status" => "alert-danger",
+                         "message" => "Only .jpg, .jpeg and .png file formats allowed."
+                     );
+                 }
+             }
+         }
          disconnect_db();
         }
 
 ?>
         <?php if($returnvalue) {?>
-                <h2>add product success <?php echo $returnvalue ?></h2>
+            <div class="add-product-result">
+                <h2>Thêm sản phẩm thành công</h2>
+                <button><a href="../addProduct.php">Thêm sản phẩm</a></button>
+                <button><a href="../../../index.php">Trang chủ</a></button>
+            </div>
+                
         <?php }else{ ?>
-                <h2>add product failed<?php echo $returnvalue ?></h2>
+            <div class="add-product-result">
+                <h2>Thêm sản phẩm không thành công, xin vui lòng kiểm tra lại thông tin</h2>
+                <button><a href="addProduct.php">Thêm lại sản phẩm</a></button>
+                <button><a href="../../index.php">Trang chủ</a></button>
+            </div>
+                
         <?php  } ?>
                 
