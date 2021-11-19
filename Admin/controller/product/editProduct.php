@@ -34,7 +34,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sửa sản phẩm</title>
     <!-- FONT ICON -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -63,7 +63,7 @@
                         <a href="" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
                     </li>
                     <li class="navbar--items">
-                        <a href="../product/listProduct.php"class="nav-items-link"><i class='bx bx-shopping-bag'></i>Quản lí đơn đặt hàng</a>
+                        <a href="../product/listProduct.php?page=1&per_page=20"class="nav-items-link"><i class='bx bx-shopping-bag'></i>Quản lí đơn đặt hàng</a>
                     </li>
                     <li class="navbar--items">
                         <a href="../category/category.php"class="nav-items-link"><i class="fas fa-tasks"></i>Danh mục thể loại</a>
@@ -84,18 +84,7 @@
             </div>
     </div>
     <div class="wrapper">
-        <!-- <div class="top--wrapper">
-            <div class="navbar--top">
-                 <div class="navbar--top__search">
-                    <input type="text" name="search" id="search">
-                    <button class="btn btn--search">Tìm tên sản phẩm</button>
-                </div> -->
-                <!-- <div class="navbar--top__admin">
-                    <p>Nguyen Hoai Tan</p>     
-                    <i class="fas fa-user-tie logo-admin"></i>
-                </div>
-            </div>
-        </div> -->
+       
         <div class="main--wrapper__editproduct">
             <div id="result-edit-product">
             <form action="editProduct.php" method="POST" class="form--addproduct" id="form-edit-product" enctype="multipart/form-data">

@@ -28,7 +28,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Trang cá nhân</title>
    <!-- FONTICON -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -209,6 +209,11 @@
                                         <p>Số lượng: <?php echo $order['SoLuong'] ?></p>
                                         <p>Tống tiền: <?php echo $order['GiaDatHang'] ?></p>
                                         <p>Ngày giao hàng dự kiến: <?php echo $order['NgayGH'] ?></p>
+                                        <p>Địa chỉ: <?php 
+                                                        $id_address = $order['MaDC'];
+                                                        $address = getAddressByIdAddress($id_address);
+                                                        echo $address[0]['DiaChi'] 
+                                                    ?></p>
                                     </div>
 
                                     <div class="order-item-col-3 status-order">

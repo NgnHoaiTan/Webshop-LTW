@@ -113,11 +113,21 @@
         disconnect_db();
         return $result;
     }
-    function getAllProductsWithAssociation(){
+    function getNumberOfProduct(){
+        global $conn;
+        connect_db();
+        $sql = "SELECT *FROM hanghoa" ; 
+        $data = mysqli_query($conn, $sql);
+        $result = mysqli_num_rows($data);
+        
+        disconnect_db();
+        return $result;
+    }
+    function getListProductWithPagination($limit, $offset){
         global $conn;
         connect_db();
         $sql = "SELECT * FROM hanghoa a INNER JOIN loaihanghoa b WHERE
-         b.MaLoaiHang = a.MaLoaiHang
+         b.MaLoaiHang = a.MaLoaiHang LIMIT $limit OFFSET $offset
         " ; 
         $data = mysqli_query($conn, $sql);
         $result = array();

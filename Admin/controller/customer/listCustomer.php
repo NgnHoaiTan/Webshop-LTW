@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh sách đơn hàng</title>
+    <title>Danh sách khách hàng</title>
 
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +48,7 @@
                         <a href="../../index.php" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Trang chủ</a>
                     </li>
                     <li class="navbar--items">
-                        <a href="../product/listProduct.php" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
+                        <a href="../product/listProduct.php?page=1&per_page=20" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
                     </li>
                     <li class="navbar--items">
                         <a href="../order/listOrder.php"class="nav-items-link"><i class='bx bx-shopping-bag'></i>Quản lí đơn đặt hàng</a>
@@ -76,10 +76,7 @@
     <div class="wrapper">
         <div class="top--wrapper">
             <div class="navbar--top">
-                <div class="navbar--top__search">
-                    <input type="text" name="search" id="search">
-                    <button class="btn btn--search">Tìm đơn hàng</button>
-                </div>
+                
                 <div class="navbar--top__admin">
                     <?php if(!empty($admininfo)) { ?>
                         <p><?php echo $admininfo['HoTenNV'] ?></p>    

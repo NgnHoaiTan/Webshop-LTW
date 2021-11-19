@@ -22,10 +22,94 @@
             mysqli_close($conn);
         }
     }
-    function getListAllProduct(){
+    function getNumberOfProduct(){
         global $conn;
         connect_db();
-        $sql = "SELECT a.MSHH,a.TenHH,a.Gia,b.MaHinh,b.TenHinh FROM hanghoa a inner join hinhhanghoa b where b.MSHH = a.MSHH and b.MaHinh LIKE 'MImg%'";
+        $sql = "SELECT *FROM hanghoa" ; 
+        $data = mysqli_query($conn, $sql);
+        $result = mysqli_num_rows($data);
+        
+        disconnect_db();
+        return $result;
+    }
+    function getNumberOfSneaker(){
+        global $conn;
+        connect_db();
+        $sql = "SELECT *FROM hanghoa WHERE MaLoaiHang='SNK-SHOES'" ; 
+        $data = mysqli_query($conn, $sql);
+        $result = mysqli_num_rows($data);
+        
+        disconnect_db();
+        return $result;
+    }
+    function getNumberOfLeatherMan(){
+        global $conn;
+        connect_db();
+        $sql = "SELECT *FROM hanghoa WHERE MaLoaiHang='Leather-shoes-man'" ; 
+        $data = mysqli_query($conn, $sql);
+        $result = mysqli_num_rows($data);
+        
+        disconnect_db();
+        return $result;
+    }
+    function getNumberOfLeatherWoman(){
+        global $conn;
+        connect_db();
+        $sql = "SELECT *FROM hanghoa WHERE MaLoaiHang='Leather-shoes-woman'" ; 
+        $data = mysqli_query($conn, $sql);
+        $result = mysqli_num_rows($data);
+        
+        disconnect_db();
+        return $result;
+    }
+    function getListAllProductWithPagination($limit, $offset){
+        global $conn;
+        connect_db();
+        $sql = "SELECT a.MSHH,a.TenHH,a.Gia,b.MaHinh,b.TenHinh FROM hanghoa a inner join hinhhanghoa b where b.MSHH = a.MSHH and b.MaHinh LIKE 'MImg%'
+                LIMIT $limit OFFSET $offset
+        ";
+        $data = mysqli_query($conn, $sql);
+        $result = array();
+        if($data){
+            while($row = mysqli_fetch_assoc($data))
+            $result[] = $row;
+        }
+        return $result;
+    }
+    function getListAllProductBySneaker($limit,$offset){
+        global $conn;
+        connect_db();
+        $sql = "SELECT a.MSHH,a.TenHH,a.Gia,b.MaHinh,b.TenHinh FROM hanghoa a inner join hinhhanghoa b where b.MSHH = a.MSHH and b.MaHinh LIKE 'MImg%'
+            and a.MaLoaiHang ='SNK-SHOES'  LIMIT $limit OFFSET $offset
+        ";
+        $data = mysqli_query($conn, $sql);
+        $result = array();
+        if($data){
+            while($row = mysqli_fetch_assoc($data))
+            $result[] = $row;
+        }
+        return $result;
+    }
+    function getListAllProductByLeatherMan($limit,$offset){
+        global $conn;
+        connect_db();
+        $sql = "SELECT a.MSHH,a.TenHH,a.Gia,b.MaHinh,b.TenHinh FROM hanghoa a inner join hinhhanghoa b where b.MSHH = a.MSHH and b.MaHinh LIKE 'MImg%'
+            and a.MaLoaiHang ='Leather-shoes-man'LIMIT $limit OFFSET $offset
+        ";
+        $data = mysqli_query($conn, $sql);
+        $result = array();
+        if($data){
+            while($row = mysqli_fetch_assoc($data))
+            $result[] = $row;
+        }
+        return $result;
+    }
+    function getListAllProductByLeatherWoman($limit,$offset){
+        global $conn;
+        connect_db();
+        $sql = "SELECT a.MSHH,a.TenHH,a.Gia,b.MaHinh,b.TenHinh FROM hanghoa a inner join hinhhanghoa b where b.MSHH = a.MSHH and b.MaHinh LIKE 'MImg%'
+            and a.MaLoaiHang ='Leather-shoes-woman' LIMIT $limit OFFSET $offset
+        ";
         $data = mysqli_query($conn, $sql);
         $result = array();
         if($data){
@@ -52,7 +136,7 @@
         global $conn;
         connect_db();
         $sql = "SELECT a.MSHH,a.TenHH,a.Gia,b.MaHinh,b.TenHinh FROM hanghoa a inner join hinhhanghoa b where b.MSHH = a.MSHH and b.MaHinh LIKE 'MImg%'
-        ORDER BY a.DateCreated ASC
+        ORDER BY a.DateCreated DESC 
         ";
         $data = mysqli_query($conn, $sql);
         $result = array();
@@ -162,6 +246,16 @@
         $quey = mysqli_query($conn, $sql);
        
         return $quey;
+    }
+    function UpdateQuantity($new_quantity, $id_product){
+        global $conn;
+        connect_db();
+        $sql = "UPDATE hanghoa SET
+        SoLuongHang =  $new_quantity   
+        WHERE MSHH = '$id_product'
+        ";
+        $query = mysqli_query($conn, $sql);
+        return $query;
     }
 
     // -------------------------------Product detail ------------------------------
@@ -294,6 +388,20 @@
         global $conn;
         connect_db();
         $sql = "SELECT * FROM diachikh WHERE MSKH='$MSKH'";
+        $data = mysqli_query($conn,$sql);
+        $result = array();
+        if($data && mysqli_num_rows($data)>0){
+            while($row = mysqli_fetch_assoc($data))
+            $result[] = $row;
+        }
+        
+        return $result;
+    }
+    function getAddressByIdAddress($id_address)
+    {
+        global $conn;
+        connect_db();
+        $sql = "SELECT * FROM diachikh WHERE MaDC='$id_address'";
         $data = mysqli_query($conn,$sql);
         $result = array();
         if($data && mysqli_num_rows($data)>0){

@@ -48,6 +48,9 @@
                     $giamgia =  isset($_POST['giamgia']) ? $_POST['giamgia'] : 0;
                     $mshh = $list_cart_product[$i]['id_product'];
                     InsertOrderDetail($sodondh,$mshh,$quantity,$sumprice,$giamgia,$phonenumber,$madc);
+                    $product = getProductById($mshh);
+                    $newquantity = $product['SoLuongHang'] - $quantity;
+                    UpdateQuantity($newquantity,$mshh);
                 if(!empty($_SESSION['cart'])){
                     for($j=0;$j<count($_SESSION['cart']);$j++){
                         if($_SESSION['cart'][$j]['id_product'] == $mshh)
@@ -74,7 +77,7 @@
                     $hotenkh = $_POST['namecustomer'];
                     $phonenumber = $_POST['phonenumber'];
                     $address = $_POST['address'];
-                    createGuestUser($mskh,$hotenkh,$phonenumber,$fax,$company);
+                    // createGuestUser($mskh,$hotenkh,$phonenumber,$fax,$company);
 
                 //them vao table dat hang
                     $sodondh = uniqid('DH-',false);
@@ -89,6 +92,11 @@
                     $giamgia =  isset($_POST['giamgia']) ? $_POST['giamgia'] : 0;
                     $mshh = $list_cart_product[$i]['id_product'];
                     InsertOrderDetail($sodondh,$mshh,$quantity,$sumprice,$giamgia,$phonenumber,$madc);
+                    $product = getProductById($mshh);
+                    $newquantity = $product['SoLuongHang'] - $quantity;
+                    UpdateQuantity($newquantity,$mshh);
+                // update quantity of product
+
                 if(!empty($_SESSION['cart'])){
                     for($j=0;$j<count($_SESSION['cart']);$j++){
                         if($_SESSION['cart'][$j]['id_product'] == $mshh)
@@ -114,7 +122,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Giỏ hàng</title>
 
     <!-- style -->
     <link rel="stylesheet" href="./assets/base.css">
@@ -145,7 +153,7 @@
                             <a href="index.php">Homepage</a>
                         </li>
                         <li class="navbar-list-item">
-                            <a href="product.php">Shop</a>
+                            <a href="product.php?page=1&per_page=24">Shop</a>
                         </li>
                         
                     </ul>

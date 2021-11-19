@@ -95,8 +95,8 @@
         <?php if($returnvalue) {?>
             <div class="add-product-result">
                 <h2>Thêm sản phẩm thành công</h2>
-                <button><a href="../addProduct.php">Thêm sản phẩm</a></button>
-                <button><a href="../../../index.php">Trang chủ</a></button>
+                <button><a href="addProduct.php">Thêm sản phẩm</a></button>
+                <button><a href="../../index.php">Trang chủ</a></button>
             </div>
                 
         <?php }else{ ?>

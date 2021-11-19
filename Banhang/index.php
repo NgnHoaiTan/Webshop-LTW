@@ -49,7 +49,7 @@
                             <a href="index.php">Homepage</a>
                         </li>
                         <li class="navbar-list-item">
-                            <a href="product.php">Shop</a>
+                            <a href="product.php?page=1&per_page=24">Shop</a>
                         </li>
                         
                     </ul>
@@ -143,42 +143,53 @@
             </div>
             <div class="womens-fashion row" id="women-fashion">
                 <div class="image-wrapper">
-                    <img src="./image/background/quote-img-women.jpg" alt="">
+                    <img src="./image/background/leather-man.jpg" alt="">
                 </div>
                 <div class="blog-wrapper">
-                    <p class="title-blog-women">Women Fashion</p>
+                    <p class="title-blog-women">Giày da nam</p>
                     <p class="quote-women-fashion">Fashion is the part of the daily air and it changes all the time, with all events. 
                         You can even see the approaching of a revolution in clothes. You can see and feel everything in clothes.</p>
                     <button class="btn-shop-now">
                         <div class="icon-btn-shopnow"><i class="fas fa-chevron-right"></i></div>
-                        <span><a href="product.php">Shopping</a></span>
+                        <span><a href="product.php?type=giaydanam&page=1&per_page=24">Shopping</a></span>
                     </button>      
                 </div>
                 
 
             </div>
-            <div class="sale-products">
-
-            </div>
+            
             <div class="men-fashion row" id="men-fashion">
                 <div class="blog-wrapper">
-                    <p class="title-blog-women">Men Fashion</p>
+                    <p class="title-blog-women">Giày da nữ</p>
                     <p class="quote-women-fashion">To achieve the nonchalance, which is absolutely necessary for a man, 
                         one article at least must not match.</p>
                     <button class="btn-shop-now">
                         <div class="icon-btn-shopnow"><i class="fas fa-chevron-right"></i></div>
-                        <span><a href="product.php">Shopping</a></span>
+                        <span><a href="product.php?type=giaydanu&page=1&per_page=24">Shopping</a></span>
                     </button>    
                 </div>
                 <div class="image-wrapper image-wrapper-men">
-                    <img src="./image/background/quote-img.jpg" alt="">
+                    <img src="./image/background/leather-woman.jpg" alt="">
                 </div>
                 
             </div>
-            
-            <div class="voucher">
+            <div class="womens-fashion row" id="women-fashion">
+                <div class="image-wrapper">
+                    <img src="./image/background/quote-img.jpg" alt="">
+                </div>
+                <div class="blog-wrapper">
+                    <p class="title-blog-women">Sneaker</p>
+                    <p class="quote-women-fashion">Fashion is the part of the daily air and it changes all the time, with all events. 
+                        You can even see the approaching of a revolution in clothes. You can see and feel everything in clothes.</p>
+                    <button class="btn-shop-now">
+                        <div class="icon-btn-shopnow"><i class="fas fa-chevron-right"></i></div>
+                        <span><a href="product.php?type=sneaker&page=1&per_page=24">Shopping</a></span>
+                    </button>      
+                </div>
+                
 
             </div>
+            
         </div>
        
         <?php if(!isset($_SESSION['user'])||empty($_SESSION['user'])){ ?>
@@ -194,7 +205,7 @@
                     <p>20%<br> 
                     <span>Sale Off</span></p>
                 </div>
-                <button class="btn-redirect-signup"><a href="">SIGN UP NOW</a></button>
+                <button class="btn-redirect-signup"><a href="register.php">SIGN UP NOW</a></button>
                 <p class="des-info-modal">Has an account ?</p>
                 <button class="btn-redirect-login">
                     <a href="login.php">LOGIN NOW</a>                  
@@ -232,53 +243,22 @@
         
     </div>
     <footer class="footer">
-        <div class="footer--top row row-justify-around">
-            <div class="footer--top__content">
-                <h4>CATAGORIES</h4>
-                <ul class="footer--menu">
-                    <li>Nam</li>
-                    <li>Nữ</li>
-                    <li>Phụ kiện</li>
-                    <li>Giày</li>
-                </ul>
+        <div class="wrapper-footer row row-justify-around">
+            <div class="left-elm-footer">
+                <p>GLAMOROUS</p>
+                <p>Design by Nguyen Hoai Tan</p>
+                <p>Contact: 0379586235</p>
+                <p>My major: Software Engineer</p>
             </div>
-            <div class="footer--top__content">
-                <h4>INFORMATION</h4>
-                <ul class="footer--menu">
-                    <li>About us</li>
-                    
-                </ul>
+            <div class="right-elm-footer">
+                <h2>Follow me</h2>
+                <div class="logo-footer row row-justify-evenly">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                </div>
+                
             </div>
-            <div class="footer--top__content">
-                <h4>LEGAL</h4>
-                <ul class="footer--menu">
-                    <li>Terms & conditions</li>
-                    <li>License Agreement</li>
-                    <li>Privacy policy</li>
-                    
-                </ul>
-                <h4>HELP</h4>
-                <ul class="footer--menu">
-                    <li>Support</li>
-                    <li>Contact</li>
-                </ul>
-            </div>
-            <div class="footer--top__content">
-                <h4>LEGAL</h4>
-                <ul class="footer--menu">
-                    <li>Nam</li>
-                    <li>Nữ</li>
-                    <li>Phụ kiện</li>
-                    <li>Giày</li>
-                </ul>
-                <h4>HELP</h4>
-                <ul class="footer--menu">
-                    <li>Nam</li>
-                    <li>Nữ</li>
-                    <li>Phụ kiện</li>
-                    <li>Giày</li>
-                </ul>
-            </div>
+            
         </div>
     </footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js">       

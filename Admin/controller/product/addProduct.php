@@ -15,7 +15,7 @@ if(isset($_SESSION['admin'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Thêm sản phẩm</title>
     <!-- FONT ICON -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -39,7 +39,7 @@ if(isset($_SESSION['admin'])){
                         <a href="../../index.php" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Trang chủ</a>
                     </li>
                     <li class="navbar--items">
-                        <a href="../product/listProduct.php" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
+                        <a href="../product/listProduct.php?page=1&per_page=20" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
                     </li>
                     <li class="navbar--items">
                         <a href="../order/listOrder.php"class="nav-items-link"><i class='bx bx-shopping-bag'></i>Quản lí đơn đặt hàng</a>
@@ -63,18 +63,7 @@ if(isset($_SESSION['admin'])){
             </div>
     </div>
     <div class="wrapper">
-        <!-- <div class="top--wrapper">
-            <div class="navbar--top">
-                 <div class="navbar--top__search">
-                    <input type="text" name="search" id="search">
-                    <button class="btn btn--search">Tìm tên sản phẩm</button>
-                </div> -->
-                <!-- <div class="navbar--top__admin">
-                    <p>Nguyen Hoai Tan</p>     
-                    <i class="fas fa-user-tie logo-admin"></i>
-                </div> 
-            </div>
-        </div> -->
+        
         <div class="main--wrapper__addproduct" id="result-add-product">
             <form action="" method="POST" class="form--addproduct" enctype="multipart/form-data" id="form-add-product">
                     <h2>Thêm sản phẩm</h2>
@@ -89,28 +78,18 @@ if(isset($_SESSION['admin'])){
                     <div class="row-spacing">
                         <label for="">Thể loại</label>             
                         <select name="category" id="category">
+                            <option value="">Chọn thể loại hàng</option>
                             <?php foreach($categories as $category) { ?>
                             <option value="<?php echo $category['MaLoaiHang'] ?>"><?php echo $category['TenLoaiHang'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
-                    <!-- <div class="row-spacing">
-                        <label for="">Hãng sản xuất</label>                
-                        <select name="brand" id="brand">
-                            <option value="Hãng 1">Hãng 1</option>
-                            <option value="Hãng 2">Hãng 2</option>
-                            <option value="Hãng 3">Hãng 3</option>
-                            <option value="Hãng Khác">Khác</option>
-                        </select>
-                    </div> -->
+                   
                     <div class="row-spacing">
                         <label for="">Giá</label>
                         <input type="text" name="price" id="price"  class="input--addproduct" required>
                     </div>
-                    <!-- <div class="row-spacing">
-                        <label for="">Giảm giá</label>
-                        <input type="text" name="discount" id="discount" class="input--addproduct"  required>
-                    </div> -->
+                    
                     <div class="row-spacing">
                         <label for="">Số lượng hàng</label>
                         <input type="text" name="quantity" id="quantity" required>

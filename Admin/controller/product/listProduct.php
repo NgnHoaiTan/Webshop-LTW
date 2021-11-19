@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Danh sách sản phẩm</title>
 
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +48,7 @@
                         <a href="../../index.php" class="nav-items-link"><i class="fas fa-home"></i>Trang chủ</a>
                     </li>
                     <li class="navbar--items">
-                        <a href="../product/listProduct.php" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
+                        <a href="../product/listProduct.php?page=1&per_page=20" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
                     </li>
                     <li class="navbar--items">
                         <a href="../order/listOrder.php"class="nav-items-link"><i class='bx bx-shopping-bag'></i>Quản lí đơn đặt hàng</a>
@@ -76,10 +76,6 @@
     <div class="wrapper">
         <div class="top--wrapper">
             <div class="navbar--top">
-                <div class="navbar--top__search">
-                    <input type="text" name="search" id="search">
-                    <button class="btn btn--search">Tìm tên sản phẩm</button>
-                </div>
                 <div class="navbar--top__admin">
                     <?php if(!empty($admininfo)) { ?>
                         <p><?php echo $admininfo['HoTenNV'] ?></p>    
@@ -96,9 +92,8 @@
             <h1 class="title--product title-style">Products</h1>
             <!-- <button class="btn btn__add"><a href="addProduct.php">Thêm sản phẩm</a></button> -->
             <button class="btn btn__add"><a href="addProduct.php">Thêm sản phẩm</a></button>
-            <div class="main--wrapper__product" >
-                <table  cellspacing="2" class="table--listproduct" id="list-fetch-product">
-                </table>
+            <div class="main--wrapper__product"  id="list-fetch-product">
+                
             </div>
         </div>
         
@@ -107,10 +102,19 @@
     </div>
     <script type="text/javascript">
         $(window).on('load',function(){
+            var searchParams = new URLSearchParams(window.location.search);
+            var page = searchParams.get('page');
+            var per_page = searchParams.get('per_page');
+            if(page==null) page = 1;
+            if(per_page==null) per_page=20;
             
             $.ajax({
                 url:'./ajaxHandle/fetch_list.php',
                 type:"post",
+                data:{
+                    'page':page,
+                    'per_page':per_page
+                },
                 success:function(fetch_result){
                     $('#list-fetch-product').html(fetch_result);
                 },

@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Trang chủ</title>
 
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,7 +46,7 @@
                         <a href="index.php" class="nav-items-link"><i class="fas fa-home"></i>Trang chủ</a>
                     </li>
                     <li class="navbar--items">
-                        <a href="./controller/product/listProduct.php" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
+                        <a href="./controller/product/listProduct.php?page=1&per_page=20" class="nav-items-link"><i class="fas fa-tshirt product-logo"></i>Quản lí sản phẩm</a>
                     </li>
                     <li class="navbar--items">
                         <a href="./controller/order/listOrder.php"class="nav-items-link"><i class='bx bx-shopping-bag'></i>Quản lí đơn đặt hàng</a>
@@ -74,10 +74,7 @@
     <div class="wrapper">
         <div class="top--wrapper">
             <div class="navbar--top">
-                <div class="navbar--top__search">
-                    <input type="text" name="search" id="search">
-                    <button class="btn btn--search">Tìm tên sản phẩm</button>
-                </div>
+               
                 <div class="navbar--top__admin">
                     <?php if(!empty($admininfo)) { ?>
                         <p><?php echo $admininfo['HoTenNV'] ?></p>    
@@ -91,7 +88,10 @@
             </div>
         </div>
         <div class="main-wrapper">
-            <h2>Dashboard</h2>
+            <h2>Xin chào <?php echo $admininfo['HoTenNV'] ?></h2>
+            <div class="wrapper-background-homepage">
+                <img src="./image/background/homepage.jpg" alt="">
+            </div>
         </div>
         
     </div>

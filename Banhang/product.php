@@ -13,7 +13,10 @@
         $user = GetFullInfoUser($_SESSION['user']);
     }
     $newarrival = isset($_GET['newarrival']) ? $_GET['newarrival'] : "";
+    $item_per_page = !empty($_GET['per_page'])? $_GET['per_page'] : 24;
 
+    $totalRecords = getNumberOfProduct();
+    $numberofpage = ceil($totalRecords/$item_per_page);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +24,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Danh sách sản phẩm</title>
     <!-- style -->
     <link rel="stylesheet" href="./assets/base.css">
     <link rel="stylesheet" href="./assets/styles.css">
@@ -57,7 +60,7 @@
                             <a href="index.php">Homepage</a>
                         </li>
                         <li class="navbar-list-item">
-                            <a href="product.php">Shop</a>
+                            <a href="product.php?page=1&per_page=24">Shop</a>
                         </li>
                         
                     </ul>
@@ -93,6 +96,7 @@
     </header>
     <div id="product-list">
         <p class="title-product-list">SHOPPING</p>
+        <img src="./image/background/banner-v6-img1.jpg" alt="">
     </div>
     <main class="main-product-site">
         <div class="top--listproduct row row-justify-around">
@@ -117,79 +121,11 @@
             </div>
         </div>
         <div class="container--listproduct" id="list-fetch-product">
-                
-                    <!-- <div class="product--info">
-                        <div class="img-product-review">
-                            <img src="./image/product/sp3.jpg" alt="">
-                                
-                                <button class="btn_buy-product">Mua hàng</button>
-                                <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button> 
-                        </div>
-                        
-                        <p class="name-product">Shirt in Stretch Cotton</p>
-                        <p>300$</p>
-                    </div>
-
-                    <div class="product--info">
-                        <div class="img-product-review">
-                            <img src="./image/product/sp4.jpg" alt="">
-                            <button class="btn_buy-product">Mua hàng</button>
-                            <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button>
-                        </div>
-                        
-                        <p class="name-product">Front Pocket Jumper</p>
-                        <p>309$</p>
-                    </div>
-                    <div class="product--info">
-                        <div class="img-product-review">
-                            <img src="./image/product/sp5.jpg" alt="" >
-                            <button class="btn_buy-product">Mua hàng</button>
-                            <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button>
-                        </div>
-                        
-                        <p class="name-product">intage Inspired Classic</p>
-                        <p>278$</p>
-                    </div>
-                    <div class="product--info">
-                        <div class="img-product-review">
-                            <img src="./image/product/sp6.jpg" alt="">
-                            <button class="btn_buy-product">Mua hàng</button>
-                            <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button>
-                        </div>
-                        
-                        <p class="name-product">jacket suit new feminity concept</p>
-                        <p>380$</p>
-                    </div>
-                    <div class="product--info">
-                        <div class="img-product-review">
-                            <img src="./image/product/sp7.jpg" alt="">
-                            <button class="btn_buy-product">Mua hàng</button>
-                            <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button>
-                        </div>
-                        
-                        <p class="name-product">T-Shirt with Sleeve</p>
-                        <p>190$</p>
-                    </div>
-                    <div class="product--info">
-                        <div class="img-product-review">
-                            <img src="./image/product/sp7.jpg" alt="">
-                            <button class="btn_buy-product">Mua hàng</button>
-                            <button class="btn_add-to-cart"><i class="fas fa-cart-plus"></i></button>
-                        </div>
-                        
-                        <p class="name-product">T-Shirt with Sleeve</p>
-                        <p>190$</p>
-                    </div> -->
-
+              
         </div>
-        <div class="row">
-            <div class="nextpage-product">
-                <button class="btn btn-nextpage">1</button>
-                <button class="btn btn-nextpage">2</button>
-                <button class="btn btn-nextpage">3</button>
-                <button class="btn btn-nextpage">4</button>
-            </div>
-        </div>
+        <!-- pagination -->
+        
+        <!-- Toast message displat when add product to cart -->
         <div id="toast"></div>
         
     </main>
@@ -197,12 +133,21 @@
          $(window).on('load',function(){
             searchParams = new URLSearchParams(window.location.search)
             var newarrival = searchParams.get('newarrival');
-            
+            var type = searchParams.get('type');
+            var page = searchParams.get('page');
+            var per_page = searchParams.get('per_page');
+            if(page==null) page = 1;
+            if(per_page==null) per_page=20;
+
+
             $.ajax({
                 url:'./controller/ajax/fetchProduct.php',
                 type:"post",
                 data:{
                     'newarrival':newarrival!=null?newarrival : "",
+                    'type':type!=null ? type :"",
+                    'page':page,
+                    'per_page':per_page,
                 },
                 success:function(fetch_result){
             

@@ -30,7 +30,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Thanh toán</title>
 
     <!-- font icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
@@ -58,7 +58,7 @@
                             <a href="index.php">Homepage</a>
                         </li>
                         <li class="navbar-list-item">
-                            <a href="product.php">Shop</a>
+                            <a href="product.php?page=1&per_page=24">Shop</a>
                         </li>
                         
                     </ul>
@@ -95,6 +95,7 @@
     <div id="checkout-result">
         <div id="product-list">
             <p class="title-product-list">HOÀN TẤT THANH TOÁN</p>
+            <img src="./image/background/banner-v6-img1.jpg" alt="">
         </div>
         <div class="container background-container_checkout" >
             <div class="body-checkout">
@@ -137,31 +138,7 @@
                                 <p> vnđ</p>
                             </div>
                         </div>
-                        <div class="option-voucher">
-                            <div class="slider">
-                                <div class="slider-item">
-                                    <img src="../../B1805914_NguyenHoaiTan/Banhang/image/voucher/freeship.JPG" alt="">
-                                </div>
-                                <div class="slider-item">
-                                    <img src="../../B1805914_NguyenHoaiTan/Banhang/image/voucher/freeship.JPG" alt="">
-                                </div>
-                                <div class="slider-item">
-                                    <img src="../../B1805914_NguyenHoaiTan/Banhang/image/voucher/freeship.JPG" alt="">
-                                </div>
-                                <div class="slider-item">
-                                    <img src="../../B1805914_NguyenHoaiTan/Banhang/image/voucher/freeship.JPG" alt="">
-                                </div>
-                                <div class="slider-item">
-                                    <img src="../../B1805914_NguyenHoaiTan/Banhang/image/voucher/freeship.JPG" alt="">
-                                </div>
-                            </div>
-                            <div class="arrow">
-                                
-                                <button type="button" class="slide-arrow prev-arrow"><i class="fas fa-caret-square-right"></i></button>
-                                
-                                <button type="button" class="slide-arrow next-arrow"><i class="fas fa-caret-square-left"></i></button>
-                            </div>
-                        </div>
+                       
                         <div class="sumtotal-checkout row">
                             <p>Tổng số tiền thanh toán:   </p>
                             <p id="total-checkout"><?php echo $product['Gia'] ?></p>
@@ -174,35 +151,78 @@
                         <span class="circle two"></span>
                         <form action="" class="infor-form" autocomplete="off">
                             
-                            
-                            <div class="input-container row-input">
-                                <label for="namecustomer" class="label-checkout">Họ tên</label>
-                                <input type="text" name="namecustomer" id="namecustomer" class="form-info-input w-input-9" required autocomplete="off">
-                            </div>
-                            <br>
-                            <div class="input-container row-input">
-                                <label for="phonenumber" class="label-checkout">Số điện thoại</label required>
-                                <input type="text" name="phonenumber" id="phonenumber" class="form-info-input w-input-9">
-                            </div>
-                            <br>
-                            <div class="input-container row-input">
-                                <label for="company" class="label-checkout">Công ty</label>
-                                <input type="text" name="company" id="company" class="form-info-input w-input-9">
-                            </div>
-                            <br>
-                            <div class="input-container row-input">
-                                <label for="fax" class="label-checkout">số Fax</label>
-                                <input type="text" name="fax" id="fax" class="form-info-input w-input-9">
-                            </div>
-                            <br>
-                            <div class="input-container row-input">
-                                <label for="address" class="label-checkout">Địa chỉ</label>
-                                <!-- <select name="address" id="address">
-                                    <option value="An Giang" class="option-address">An Giang</option>
-                                </select> -->
-                                <textarea name="address" id="address" cols="30" rows="5" class="form-info-input w-input-9"></textarea>
-                                
-                            </div>
+                            <?php if(empty($user)){ ?>
+                                <div class="input-container row-input">
+                                    <label for="namecustomer" class="label-checkout">Họ tên</label>
+                                    <input type="text" name="namecustomer" id="namecustomer" class="form-info-input w-input-9" required autocomplete="off">
+                                </div>
+                                <br>
+                                <div class="input-container row-input">
+                                    <label for="phonenumber" class="label-checkout">Số điện thoại</label required>
+                                    <input type="text" name="phonenumber" id="phonenumber" class="form-info-input w-input-9">
+                                </div>
+                                <br>
+                                <div class="input-container row-input">
+                                    <label for="company" class="label-checkout">Công ty</label>
+                                    <input type="text" name="company" id="company" class="form-info-input w-input-9">
+                                </div>
+                                <br>
+                                <div class="input-container row-input">
+                                    <label for="fax" class="label-checkout">số Fax</label>
+                                    <input type="text" name="fax" id="fax" class="form-info-input w-input-9">
+                                </div>
+                                <br>
+                                <div class="input-container row-input">
+                                    <label for="address" class="label-checkout">Địa chỉ</label>
+                                    <!-- <select name="address" id="address">
+                                        <option value="An Giang" class="option-address">An Giang</option>
+                                    </select> -->
+                                    <textarea name="address" id="address" cols="30" rows="5" class="form-info-input w-input-9"></textarea>
+                                    
+                                </div>
+                            <?php }else{ ?>
+                                <div class="input-container row-input">
+                                    <label for="namecustomer" class="label-checkout">Họ tên</label>
+                                    <input type="text" name="namecustomer" id="namecustomer" class="form-info-input w-input-9" value="<?php echo $user['HoTenKH'] ?>" required autocomplete="off">
+                                </div>
+                                <br>
+                                <div class="input-container row-input">
+                                    <label for="phonenumber" class="label-checkout">Số điện thoại</label required>
+                                    <input type="text" name="phonenumber" id="phonenumber" class="form-info-input w-input-9" value="<?php echo $user['SoDienThoai'] ?>">
+                                </div>
+                                <br>
+                                <div class="input-container row-input">
+                                    <label for="company" class="label-checkout">Công ty</label>
+                                    <input type="text" name="company" id="company" class="form-info-input w-input-9" value="<?php echo $user['TenCongTy'] ?>">
+                                </div>
+                                <br>
+                                <div class="input-container row-input">
+                                    <label for="fax" class="label-checkout">số Fax</label>
+                                    <input type="text" name="fax" id="fax" class="form-info-input w-input-9" value="<?php echo $user['SoFax'] ?>">
+                                </div>
+                                <br>
+                                <div class="input-container row-input custom-select">
+                                    <label for="address" class="label-checkout">Địa chỉ</label>
+                                    
+                                        <?php 
+                                            $listaddress = getAddressByUser($user['MSKH']);
+                                            if(!empty($listaddress)) { ?>
+                                        <select name="address" id="address">
+                                            <option value="" class="option-address">Chọn địa chỉ</option>
+                                            <?php   foreach($listaddress as $address){
+                                        ?>
+                                            <option value="<?php echo $address['MaDC'] ?>" class="option-address"><?php echo $address['DiaChi'] ?></option>
+                                        <?php } ?>
+                                        </select>
+                                        <?php }else{ ?>
+                                            <textarea name="address" id="address" cols="30" rows="5" class="form-info-input w-input-9"></textarea>
+                                        <?php } ?>
+                                        
+                                    
+                                    
+                                    
+                                </div>
+                            <?php } ?>
                             <br>
                             <input type="hidden" name="quantity-input" value= "1" id="quantity-input" />
                             <input type="hidden" name="MSHH-input" id="id_product-input" value="<?php echo $product['MSHH'] ?>" />
@@ -214,6 +234,7 @@
             </div>
         </div>
     </div>
+
     
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js">       
     </script>
@@ -292,6 +313,88 @@
        
 
         });
+    </script>
+    <script>
+        var x, i, j, l, ll, selElmnt, a, b, c;
+        /*look for any elements with the class "custom-select":*/
+        x = document.getElementsByClassName("custom-select");
+        l = x.length;
+        for (i = 0; i < l; i++) {
+            selElmnt = x[i].getElementsByTagName("select")[0];
+            ll = selElmnt.length;
+            /*for each element, create a new DIV that will act as the selected item:*/
+            a = document.createElement("DIV");
+            a.setAttribute("class", "select-selected");
+            a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+            x[i].appendChild(a);
+            /*for each element, create a new DIV that will contain the option list:*/
+            b = document.createElement("DIV");
+            b.setAttribute("class", "select-items select-hide");
+            for (j = 1; j < ll; j++) {
+                /*for each option in the original select element,
+                create a new DIV that will act as an option item:*/
+                c = document.createElement("DIV");
+                c.innerHTML = selElmnt.options[j].innerHTML;
+                c.addEventListener("click", function(e) {
+                    /*when an item is clicked, update the original select box,
+                    and the selected item:*/
+                    var y, i, k, s, h, sl, yl;
+                    s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                    sl = s.length;
+                    h = this.parentNode.previousSibling;
+                    for (i = 0; i < sl; i++) {
+                    if (s.options[i].innerHTML == this.innerHTML) {
+                        s.selectedIndex = i;
+                        h.innerHTML = this.innerHTML;
+                        y = this.parentNode.getElementsByClassName("same-as-selected");
+                        yl = y.length;
+                        for (k = 0; k < yl; k++) {
+                        y[k].removeAttribute("class");
+                        }
+                        this.setAttribute("class", "same-as-selected");
+                        break;
+                    }
+                    }
+                    h.click();
+                });
+                b.appendChild(c);
+        }
+        x[i].appendChild(b);
+
+        a.addEventListener("click", function(e) {
+            /*when the select box is clicked, close any other select boxes,
+            and open/close the current select box:*/
+            e.stopPropagation();
+            closeAllSelect(this);
+            this.nextSibling.classList.toggle("select-hide");
+            this.classList.toggle("select-arrow-active");
+            });
+        }
+
+        function closeAllSelect(elmnt) {
+        /*a function that will close all select boxes in the document,
+        except the current select box:*/
+        var x, y, i, xl, yl, arrNo = [];
+        x = document.getElementsByClassName("select-items");
+        y = document.getElementsByClassName("select-selected");
+        xl = x.length;
+        yl = y.length;
+        for (i = 0; i < yl; i++) {
+            if (elmnt == y[i]) {
+            arrNo.push(i)
+            } else {
+            y[i].classList.remove("select-arrow-active");
+            }
+        }
+        for (i = 0; i < xl; i++) {
+            if (arrNo.indexOf(i)) {
+            x[i].classList.add("select-hide");
+            }
+        }
+        }
+        /*if the user clicks anywhere outside the select box,
+        then close all select boxes:*/
+        document.addEventListener("click", closeAllSelect);
     </script>
 </body>
 </html>
