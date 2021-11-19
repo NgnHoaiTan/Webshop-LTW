@@ -413,7 +413,12 @@ img{
     left: 99%;
     transform: translateX(-100%);
 }
-
+.nextpage-product .active-page{
+    background-color: black;
+}
+.nextpage-product .active-page a{
+    color: white;
+}
 
 /* MODAL LOGIN HOMEPGAE */
 .wrapper-modal{

@@ -85,13 +85,29 @@
                     <div class="nextpage-product">
                         <?php for($i=0;$i<$numberofpage;$i++){ ?>
                             <?php if($type=='sneaker'){ ?>
-                                <button class="btn btn-nextpage"><a href="product.php?type=sneaker&page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button>           
+                                <?php if($i+1==$current_page){ ?>
+                                    <button class="btn btn-nextpage active-page"><a href="product.php?type=sneaker&page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button> 
+                                <?php }else{ ?>
+                                    <button class="btn btn-nextpage"><a href="product.php?type=sneaker&page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button> 
+                                <?php } ?>
                             <?php }else if($type=='giaydanam'){ ?>
-                                <button class="btn btn-nextpage"><a href="product.php?type=giaydanam&page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button>
+                                <?php if($i+1==$current_page){ ?>
+                                    <button class="btn btn-nextpage active-page"><a href="product.php?type=giaydanam&page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button>
+                                <?php }else{ ?>
+                                    <button class="btn btn-nextpage"><a href="product.php?type=giaydanam&page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button>
+                                <?php } ?>
                             <?php }else if($type=='giaydanu') { ?>
-                                <button class="btn btn-nextpage"><a href="product.php?type=giaydanu&page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button>
+                                <?php if($i+1==$current_page){ ?>
+                                    <button class="btn btn-nextpage active-page"><a href="product.php?type=giaydanu&page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button>
+                                <?php }else{ ?>
+                                    <button class="btn btn-nextpage"><a href="product.php?type=giaydanu&page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button>
+                                <?php } ?>
                             <?php }else{ ?>
-                                <button class="btn btn-nextpage"><a href="product.php?page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button>
+                                <?php if($i+1==$current_page){ ?>
+                                    <button class="btn btn-nextpage active-page"><a href="product.php?page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button>
+                                <?php }else{ ?>
+                                    <button class="btn btn-nextpage"><a href="product.php?page=<?php echo $i+1 ?>&per_page=24"><?php echo $i+1 ?></a></button>   
+                                <?php } ?>
                             <?php } ?>
                         
                         <?php } ?>
